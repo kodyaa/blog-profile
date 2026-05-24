@@ -1,0 +1,68 @@
+name: Deploy Static Site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ] # Sesuaikan jika branch utama Anda bukan 'main' (misal: 'master')
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, ctype, iconv, sqlite3
+
+      - name: Install Composer Dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.12.0' # Disesuaikan dengan versi Node Anda (v24.12.0)
+
+      - name: Install NPM Dependencies & Build Assets
+        run: |
+          npm ci
+          npm run build
+        env:
+          # Sesuaikan /blog-profile/ dengan nama repositori GitHub Anda jika di-host di subdomain github.io default (misal: username.github.io/repo-name/)
+          # Kosongkan atau hapus jika Anda menggunakan custom domain di GitHub Pages.
+          ASSET_URL: /blog-profile/
+
+      - name: Generate static HTML files
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan app:export
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ':memory:'
+          SESSION_DRIVER: array
+          CACHE_STORE: array
+          ASSET_URL: /blog-profile/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
