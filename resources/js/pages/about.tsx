@@ -2,6 +2,7 @@ import { Head, Link } from '@inertiajs/react';
 import { Card, Button, Avatar, Typography } from '@heroui/react';
 import { Target, Compass, Sparkles, ArrowRight } from 'lucide-react';
 import { values, team } from '@/data/about';
+import { routePath } from '@/lib/utils';
 
 
 export default function About() {
@@ -144,7 +145,7 @@ export default function About() {
                     Diskusikan ide proyek digital Anda dengan konsultan kami dan mari buat sesuatu yang luar biasa.
                 </Typography>
                 <div>
-                    <Link href="/contact">
+                    <Link href={routePath('/contact')}>
                         <Button className="bg-linear-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-full px-6">
                             Hubungi Kami Sekarang
                             <ArrowRight className="h-4 w-4 ml-1" />

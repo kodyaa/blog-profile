@@ -1,27 +1,20 @@
 {
-  "_arrow-right-CG3qXPDj.js": {
-    "file": "assets/arrow-right-CG3qXPDj.js",
+  "_arrow-right-DVpsyGWC.js": {
+    "file": "assets/arrow-right-DVpsyGWC.js",
     "name": "arrow-right",
     "imports": [
       "resources/js/app.tsx"
     ]
   },
-  "_card-AD3pjlLP.js": {
-    "file": "assets/card-AD3pjlLP.js",
-    "name": "card",
-    "imports": [
-      "resources/js/app.tsx"
-    ]
-  },
-  "_chip-CeBBXXxP.js": {
-    "file": "assets/chip-CeBBXXxP.js",
+  "_chip-CxxR0g9r.js": {
+    "file": "assets/chip-CxxR0g9r.js",
     "name": "chip",
     "imports": [
       "resources/js/app.tsx"
     ]
   },
-  "_circle-check-BstdHqGK.js": {
-    "file": "assets/circle-check-BstdHqGK.js",
+  "_circle-check-h1k4E_Wi.js": {
+    "file": "assets/circle-check-h1k4E_Wi.js",
     "name": "circle-check",
     "imports": [
       "resources/js/app.tsx"
@@ -79,22 +72,29 @@
     "file": "assets/instrument-sans-600-normal-DMks36a2.woff",
     "src": "_instrument-sans-600-normal-DMks36a2.woff"
   },
-  "_shield-check-BXHSz-ik.js": {
-    "file": "assets/shield-check-BXHSz-ik.js",
+  "_shield-check-DORvpUCj.js": {
+    "file": "assets/shield-check-DORvpUCj.js",
     "name": "shield-check",
     "imports": [
       "resources/js/app.tsx"
     ]
   },
-  "_sparkles-D9FDlstr.js": {
-    "file": "assets/sparkles-D9FDlstr.js",
+  "_sparkles-slAnlMxT.js": {
+    "file": "assets/sparkles-slAnlMxT.js",
     "name": "sparkles",
     "imports": [
       "resources/js/app.tsx"
     ]
   },
+  "_typography-YSJNJ5C7.js": {
+    "file": "assets/typography-YSJNJ5C7.js",
+    "name": "typography",
+    "imports": [
+      "resources/js/app.tsx"
+    ]
+  },
   "resources/css/app.css": {
-    "file": "assets/app-ByMt_BZH.css",
+    "file": "assets/app-BFUthChc.css",
     "name": "app",
     "names": [
       "app.css"
@@ -103,7 +103,7 @@
     "isEntry": true
   },
   "resources/js/app.tsx": {
-    "file": "assets/app-c1vl4U5s.js",
+    "file": "assets/app-BsDX9p6w.js",
     "name": "app",
     "src": "resources/js/app.tsx",
     "isEntry": true,
@@ -116,66 +116,66 @@
     ]
   },
   "resources/js/pages/about.tsx": {
-    "file": "assets/about-D8yKIO-7.js",
+    "file": "assets/about-UkzUyuWb.js",
     "name": "about",
     "src": "resources/js/pages/about.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_card-AD3pjlLP.js",
-      "_arrow-right-CG3qXPDj.js",
-      "_sparkles-D9FDlstr.js"
+      "_typography-YSJNJ5C7.js",
+      "_arrow-right-DVpsyGWC.js",
+      "_sparkles-slAnlMxT.js"
     ]
   },
   "resources/js/pages/contact.tsx": {
-    "file": "assets/contact-cxYIF7FY.js",
+    "file": "assets/contact-CW9yCbXV.js",
     "name": "contact",
     "src": "resources/js/pages/contact.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_card-AD3pjlLP.js",
-      "_circle-check-BstdHqGK.js"
+      "_typography-YSJNJ5C7.js",
+      "_circle-check-h1k4E_Wi.js"
     ]
   },
   "resources/js/pages/portfolio.tsx": {
-    "file": "assets/portfolio-ryQ1MHYn.js",
+    "file": "assets/portfolio-DYU4ybSZ.js",
     "name": "portfolio",
     "src": "resources/js/pages/portfolio.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_card-AD3pjlLP.js",
-      "_chip-CeBBXXxP.js",
-      "_sparkles-D9FDlstr.js"
+      "_typography-YSJNJ5C7.js",
+      "_chip-CxxR0g9r.js",
+      "_sparkles-slAnlMxT.js"
     ]
   },
   "resources/js/pages/services.tsx": {
-    "file": "assets/services-COLI0wxu.js",
+    "file": "assets/services-DrW8ypc6.js",
     "name": "services",
     "src": "resources/js/pages/services.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_card-AD3pjlLP.js",
-      "_chip-CeBBXXxP.js",
-      "_arrow-right-CG3qXPDj.js",
-      "_circle-check-BstdHqGK.js",
-      "_shield-check-BXHSz-ik.js"
+      "_typography-YSJNJ5C7.js",
+      "_chip-CxxR0g9r.js",
+      "_arrow-right-DVpsyGWC.js",
+      "_circle-check-h1k4E_Wi.js",
+      "_shield-check-DORvpUCj.js"
     ]
   },
   "resources/js/pages/welcome.tsx": {
-    "file": "assets/welcome-BuIaRgOl.js",
+    "file": "assets/welcome-BnG85ljK.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.tsx",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.tsx",
-      "_card-AD3pjlLP.js",
-      "_chip-CeBBXXxP.js",
-      "_arrow-right-CG3qXPDj.js",
-      "_shield-check-BXHSz-ik.js",
-      "_sparkles-D9FDlstr.js"
+      "_typography-YSJNJ5C7.js",
+      "_chip-CxxR0g9r.js",
+      "_arrow-right-DVpsyGWC.js",
+      "_shield-check-DORvpUCj.js",
+      "_sparkles-slAnlMxT.js"
     ]
   }
 }

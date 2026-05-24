@@ -2,6 +2,7 @@ import { Head, Link } from '@inertiajs/react';
 import { Card, Button, Chip, Typography } from '@heroui/react';
 import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
 import { coreStrengths, stats, serviceTeasers } from '@/data/welcome';
+import { routePath } from '@/lib/utils';
 
 
 export default function Welcome() {
@@ -35,13 +36,13 @@ export default function Welcome() {
                     </Typography>
 
                     <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-                        <Link href="/services">
+                        <Link href={routePath('/services')}>
                             <Button className="bg-linear-to-r from-indigo-500 to-purple-600 text-white font-medium hover:opacity-95 transition-opacity px-6 py-6 text-base rounded-full shadow-lg shadow-indigo-500/20">
                                 Explore Services
                                 <ArrowRight className="h-5 w-5" />
                             </Button>
                         </Link>
-                        <Link href="/contact">
+                        <Link href={routePath('/contact')}>
                             <Button variant="outline" className="border-border hover:bg-default-hover px-6 py-6 text-base rounded-full font-medium">
                                 Schedule Consultation
                             </Button>
@@ -111,7 +112,7 @@ export default function Welcome() {
                             Customized Solutions for Every Scale
                         </Typography>
                     </div>
-                    <Link href="/services">
+                    <Link href={routePath('/services')}>
                         <Button variant="ghost" className="hover:bg-default-hover group flex items-center gap-1">
                             View All Services
                             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -192,7 +193,7 @@ export default function Welcome() {
                 </div>
 
                 <div className="text-center pt-4">
-                    <Link href="/portfolio">
+                    <Link href={routePath('/portfolio')}>
                         <Button className="bg-default hover:bg-default-hover rounded-full px-6">
                             Browse Portfolio Gallery
                         </Button>
@@ -211,7 +212,7 @@ export default function Welcome() {
                         Get in touch with our team today. Let's collaborate to construct high-impact digital systems for your organization.
                     </Typography>
                     <div className="pt-4">
-                        <Link href="/contact">
+                        <Link href={routePath('/contact')}>
                             <Button className="bg-white text-indigo-600 hover:bg-opacity-95 font-semibold px-8 py-6 text-base rounded-full shadow-lg">
                                 Contact Us Today
                                 <ArrowRight className="h-5 w-5 ml-1" />

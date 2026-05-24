@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ThemeToggle from '@/components/theme-toggle';
 import { Button } from '@heroui/react';
 import { Menu, X, Home, Briefcase, Layers, Users2, Mail, Building2 } from 'lucide-react';
+import { routePath } from '@/lib/utils';
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
     const { url } = usePage();
@@ -22,7 +23,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
                 <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                     {/* Logo / Brand */}
-                    <Link href="/" className="flex items-center gap-2.5 font-bold text-lg tracking-tight">
+                    <Link href={routePath('/')} className="flex items-center gap-2.5 font-bold text-lg tracking-tight">
                         <img src="/Logo2.png" alt="Logo" className="h-8 w-auto object-contain" />
                         <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent font-bold">
                             Portofolia Blog by Kodya
@@ -40,7 +41,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                             return (
                                 <Link
                                     key={link.name}
-                                    href={link.href}
+                                    href={routePath(link.href)}
                                     className={`relative flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 group ${
                                         isActive
                                             ? 'text-primary'
@@ -65,7 +66,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                     <div className="hidden md:flex items-center gap-4">
                         <ThemeToggle />
                         
-                        <Link href="/contact">
+                        <Link href={routePath('/contact')}>
                             <Button size="sm" className="bg-linear-to-r from-indigo-500 to-purple-600 text-white font-medium hover:opacity-90 transition-opacity rounded-full px-5">
                                 Get in Touch
                             </Button>
@@ -101,7 +102,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                                 return (
                                     <Link
                                         key={link.name}
-                                        href={link.href}
+                                        href={routePath(link.href)}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className={`flex items-center gap-3 rounded-xl px-3 py-3 text-base font-medium transition-all duration-200 ${
                                             isActive
@@ -121,7 +122,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                             <hr className="my-3 border-border/40" />
 
                             <div className="px-3">
-                                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="w-full">
+                                <Link href={routePath('/contact')} onClick={() => setMobileMenuOpen(false)} className="w-full">
                                     <Button fullWidth className="bg-linear-to-r from-indigo-500 to-purple-600 text-white font-medium">
                                         Get in Touch
                                     </Button>

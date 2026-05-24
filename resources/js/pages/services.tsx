@@ -2,6 +2,7 @@ import { Head, Link } from '@inertiajs/react';
 import { Card, Button, Chip, Typography } from '@heroui/react';
 import { CheckCircle2, ArrowRight, ShieldCheck, Zap, Code } from 'lucide-react';
 import { services, workSteps } from '@/data/services';
+import { routePath } from '@/lib/utils';
 
 
 export default function Services() {
@@ -115,7 +116,7 @@ export default function Services() {
                     We specialize in constructing unique architectures. Let's sit down and discuss a tailored contract for your business.
                 </Typography>
                 <div>
-                    <Link href="/contact">
+                    <Link href={routePath('/contact')}>
                         <Button className="bg-linear-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-full px-6">
                             Start Your Project
                             <ArrowRight className="h-4 w-4 ml-1" />
