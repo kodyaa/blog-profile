@@ -41,15 +41,29 @@ const isDarkMode = (appearance: Appearance): boolean => {
     return appearance === 'dark' || (appearance === 'system' && prefersDark());
 };
 
+/**
+ * Apply theme following HeroUI's theming system:
+ * - Adds/removes `.dark` / `.light` class on <html>
+ * - Sets `data-theme` attribute on <html> for HeroUI component targeting
+ * - Sets `color-scheme` for browser UI (scrollbars, inputs, etc.)
+ */
 const applyTheme = (appearance: Appearance): void => {
     if (typeof document === 'undefined') {
         return;
     }
 
     const isDark = isDarkMode(appearance);
+    const resolvedTheme: ResolvedAppearance = isDark ? 'dark' : 'light';
 
+    // Toggle .dark / .light class (used by @custom-variant and Tailwind dark:)
     document.documentElement.classList.toggle('dark', isDark);
-    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+    document.documentElement.classList.toggle('light', !isDark);
+
+    // Set data-theme attribute as required by HeroUI's theming system
+    document.documentElement.setAttribute('data-theme', resolvedTheme);
+
+    // Set color-scheme for native browser UI elements
+    document.documentElement.style.colorScheme = resolvedTheme;
 };
 
 const subscribe = (callback: () => void) => {
@@ -83,7 +97,7 @@ export function initializeTheme(): void {
     currentAppearance = getStoredAppearance();
     applyTheme(currentAppearance);
 
-    // Set up system theme change listener
+    // Listen for OS-level theme changes (system mode)
     mediaQuery()?.addEventListener('change', handleSystemThemeChange);
 }
 
@@ -101,10 +115,10 @@ export function useAppearance(): UseAppearanceReturn {
     const updateAppearance = (mode: Appearance): void => {
         currentAppearance = mode;
 
-        // Store in localStorage for client-side persistence...
+        // Persist in localStorage for client-side continuity
         localStorage.setItem('appearance', mode);
 
-        // Store in cookie for SSR...
+        // Persist in cookie for SSR
         setCookie('appearance', mode);
 
         applyTheme(mode);

@@ -30,22 +30,32 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                     </Link>
 
                     {/* Desktop Nav Links */}
-                    <nav className="hidden md:flex items-center gap-6">
+                    <nav className="hidden md:flex items-center gap-1">
                         {navLinks.map((link) => {
                             const Icon = link.icon;
-                            const isActive = url === link.href;
+                            const isActive =
+                                link.href === '/'
+                                    ? url === '/'
+                                    : url.startsWith(link.href);
                             return (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${
+                                    className={`relative flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 group ${
                                         isActive
-                                            ? 'text-primary font-semibold'
-                                            : 'text-muted-foreground hover:text-foreground'
+                                            ? 'text-primary'
+                                            : 'text-muted-foreground hover:text-foreground hover:bg-default-hover'
                                     }`}
                                 >
-                                    <Icon className="h-4 w-4" />
+                                    <Icon className={`h-4 w-4 transition-colors ${isActive ? 'text-primary' : ''}`} />
                                     {link.name}
+                                    {/* Animated underline indicator */}
+                                    <span
+                                        className={`absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-linear-to-r from-indigo-500 to-purple-600 transition-all duration-300 ${
+                                            isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+                                        }`}
+                                        style={{ transformOrigin: 'left' }}
+                                    />
                                 </Link>
                             );
                         })}
@@ -84,20 +94,26 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                         <div className="space-y-1 px-4 py-4">
                             {navLinks.map((link) => {
                                 const Icon = link.icon;
-                                const isActive = url === link.href;
+                                const isActive =
+                                    link.href === '/'
+                                        ? url === '/'
+                                        : url.startsWith(link.href);
                                 return (
                                     <Link
                                         key={link.name}
                                         href={link.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className={`flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-base font-medium transition-colors ${
+                                        className={`flex items-center gap-3 rounded-xl px-3 py-3 text-base font-medium transition-all duration-200 ${
                                             isActive
-                                                ? 'bg-primary/10 text-primary font-semibold'
+                                                ? 'bg-linear-to-r from-indigo-500/10 to-purple-500/10 text-primary border border-indigo-500/20'
                                                 : 'text-muted-foreground hover:bg-default-hover hover:text-foreground'
                                         }`}
                                     >
-                                        <Icon className="h-5 w-5" />
-                                        {link.name}
+                                        <Icon className={`h-5 w-5 shrink-0 ${isActive ? 'text-indigo-500' : ''}`} />
+                                        <span className="flex-1">{link.name}</span>
+                                        {isActive && (
+                                            <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
+                                        )}
                                     </Link>
                                 );
                             })}

@@ -1,65 +1,10 @@
 import { Head, Link } from '@inertiajs/react';
-import { Card, Button, Chip } from '@heroui/react';
-import { 
-    ArrowRight, 
-    Cpu, 
-    Layers, 
-    Users2, 
-    TrendingUp, 
-    ShieldCheck, 
-    Globe, 
-    Sparkles,
-    Briefcase,
-    CheckCircle2
-} from 'lucide-react';
+import { Card, Button, Chip, Typography } from '@heroui/react';
+import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
+import { coreStrengths, stats, serviceTeasers } from '@/data/welcome';
+
 
 export default function Welcome() {
-    const coreStrengths = [
-        {
-            title: 'Innovation-First',
-            description: 'We leverage cutting-edge technologies to build future-proof products.',
-            icon: Cpu,
-            color: 'text-indigo-500 bg-indigo-500/10 border-indigo-500/20'
-        },
-        {
-            title: 'Secure & Scalable',
-            description: 'Our cloud architectures are designed with enterprise-grade security first.',
-            icon: ShieldCheck,
-            color: 'text-purple-500 bg-purple-500/10 border-purple-500/20'
-        },
-        {
-            title: 'Global Delivery',
-            description: 'Serving clients worldwide with top-tier engineering talent and support.',
-            icon: Globe,
-            color: 'text-pink-500 bg-pink-500/10 border-pink-500/20'
-        }
-    ];
-
-    const stats = [
-        { number: '150+', label: 'Projects Completed' },
-        { number: '50+', label: 'Global Clients' },
-        { number: '99%', label: 'Client Satisfaction' },
-        { number: '8+', label: 'Years of Excellence' }
-    ];
-
-    const serviceTeasers = [
-        {
-            title: 'Enterprise Software',
-            description: 'Custom ERPs, CRMs, and robust backend ecosystems tailored for high-volume transactions and seamless operations.',
-            tags: ['Laravel', 'Node.js', 'PostgreSQL']
-        },
-        {
-            title: 'High-Fidelity Frontends',
-            description: 'Beautiful, accessible, and fast single-page applications built using modern frameworks and responsive component engines.',
-            tags: ['React', 'Inertia.js', 'Tailwind CSS']
-        },
-        {
-            title: 'UI/UX & Design Systems',
-            description: 'Strategic visual designs, interactive wireframes, and scalable component systems designed to maximize user engagement.',
-            tags: ['Figma', 'Prototyping', 'Design Tokens']
-        }
-    ];
-
     return (
         <>
             <Head title="Portofolia Blog by Kodya" />
@@ -71,21 +16,23 @@ export default function Welcome() {
                 <div className="absolute top-1/3 left-1/3 w-75 h-75 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
 
                 <div className="relative z-10 max-w-4xl mx-auto space-y-6 px-4">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1 text-xs font-semibold text-indigo-500 animate-fade-in">
-                        <Sparkles className="h-3.5 w-3.5" />
-                        <span>Innovating Digital Frontiers</span>
+                    <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1 animate-fade-in">
+                        <Sparkles className="h-3.5 w-3.5 text-indigo-500" />
+                        <Typography type="body-sm" weight="semibold" className="text-indigo-500">
+                            Innovating Digital Frontiers
+                        </Typography>
                     </div>
                     
-                    <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-none">
+                    <Typography type="h1" weight="bold" align="center" className="text-4xl sm:text-6xl font-black tracking-tight leading-none">
                         Building the Next Generation of{' '}
                         <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                             Digital Enterprises
                         </span>
-                    </h1>
+                    </Typography>
                     
-                    <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                    <Typography type="body" color="muted" align="center" className="text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
                         Portofolia Blog by Kodya designs, builds, and scales custom software systems, interactive interfaces, and cloud architectures that propel businesses forward in the digital economy.
-                    </p>
+                    </Typography>
 
                     <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
                         <Link href="/services">
@@ -111,7 +58,9 @@ export default function Welcome() {
                             <div className="text-3xl sm:text-5xl font-black bg-linear-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
                                 {stat.number}
                             </div>
-                            <div className="text-sm font-medium text-muted-foreground">{stat.label}</div>
+                            <Typography type="body-sm" color="muted" weight="medium" align="center">
+                                {stat.label}
+                            </Typography>
                         </div>
                     ))}
                 </div>
@@ -120,10 +69,12 @@ export default function Welcome() {
             {/* Core Values / strengths */}
             <section className="py-16 border-b border-border/40 space-y-12">
                 <div className="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 className="text-3xl font-bold tracking-tight">Why Clients Trust Portofolia Blog by Kodya</h2>
-                    <p className="text-muted-foreground">
+                    <Typography type="h2" weight="bold" align="center" className="tracking-tight">
+                        Why Clients Trust Portofolia Blog by Kodya
+                    </Typography>
+                    <Typography type="body" color="muted" align="center">
                         We blend software engineering expertise with user-centric design to solve complex business problems.
-                    </p>
+                    </Typography>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
@@ -135,8 +86,10 @@ export default function Welcome() {
                                     <Icon className="h-6 w-6" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-lg font-bold">{item.title}</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                                    <Typography type="h4" weight="bold">{item.title}</Typography>
+                                    <Typography type="body-sm" color="muted" className="leading-relaxed">
+                                        {item.description}
+                                    </Typography>
                                 </div>
                             </Card>
                         );
@@ -148,11 +101,15 @@ export default function Welcome() {
             <section className="py-16 border-b border-border/40 space-y-12">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div className="space-y-3 max-w-2xl">
-                        <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-500 uppercase tracking-widest">
-                            <Briefcase className="h-3.5 w-3.5" />
-                            <span>Our Capabilities</span>
+                        <div className="inline-flex items-center gap-1.5">
+                            <Briefcase className="h-3.5 w-3.5 text-purple-500" />
+                            <Typography type="body-xs" weight="semibold" className="text-purple-500 uppercase tracking-widest">
+                                Our Capabilities
+                            </Typography>
                         </div>
-                        <h2 className="text-3xl font-bold tracking-tight">Customized Solutions for Every Scale</h2>
+                        <Typography type="h2" weight="bold" className="tracking-tight">
+                            Customized Solutions for Every Scale
+                        </Typography>
                     </div>
                     <Link href="/services">
                         <Button variant="ghost" className="hover:bg-default-hover group flex items-center gap-1">
@@ -168,8 +125,10 @@ export default function Welcome() {
                             <Card.Header>
                                 <Card.Title className="text-xl font-bold">{service.title}</Card.Title>
                             </Card.Header>
-                            <Card.Content className="flex-1 text-sm text-muted-foreground leading-relaxed">
-                                <p className="mb-6">{service.description}</p>
+                            <Card.Content className="flex-1 leading-relaxed">
+                                <Typography type="body-sm" color="muted" className="mb-6 leading-relaxed">
+                                    {service.description}
+                                </Typography>
                                 <div className="flex flex-wrap gap-1.5 mt-auto">
                                     {service.tags.map((tag) => (
                                         <Chip key={tag} size="sm" variant="secondary" className="border border-border text-xs px-2.5 py-0.5 rounded-md">
@@ -186,16 +145,17 @@ export default function Welcome() {
             {/* Quick Portfolio teaser */}
             <section className="py-16 border-b border-border/40 space-y-12">
                 <div className="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 className="text-3xl font-bold tracking-tight">Our Work Speaks for Itself</h2>
-                    <p className="text-muted-foreground">
+                    <Typography type="h2" weight="bold" align="center" className="tracking-tight">
+                        Our Work Speaks for Itself
+                    </Typography>
+                    <Typography type="body" color="muted" align="center">
                         Take a look at some of our recent engineering triumphs and creative design projects.
-                    </p>
+                    </Typography>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
                     <Card className="border border-border/40 bg-surface/30 overflow-hidden flex flex-col group">
                         <div className="h-64 overflow-hidden relative bg-indigo-950">
-                            {/* Placeholder structure with clean CSS layout */}
                             <div className="absolute inset-0 bg-linear-to-br from-indigo-500/20 to-purple-800/40 mix-blend-multiply group-hover:scale-105 transition-transform duration-500" />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <span className="text-3xl font-bold text-white tracking-widest opacity-80 uppercase">AeroCloud ERP</span>
@@ -205,8 +165,10 @@ export default function Welcome() {
                             <Card.Title className="text-xl font-bold">AeroCloud - Next-Gen ERP Platform</Card.Title>
                             <Card.Description>Cloud Architecture & Enterprise Backend</Card.Description>
                         </Card.Header>
-                        <Card.Content className="text-sm text-muted-foreground leading-relaxed">
-                            A complete operations and inventory engine designed for aviation parts manufacturing, connecting legacy databases with dynamic React dashboards.
+                        <Card.Content>
+                            <Typography type="body-sm" color="muted" className="leading-relaxed">
+                                A complete operations and inventory engine designed for aviation parts manufacturing, connecting legacy databases with dynamic React dashboards.
+                            </Typography>
                         </Card.Content>
                     </Card>
 
@@ -221,8 +183,10 @@ export default function Welcome() {
                             <Card.Title className="text-xl font-bold">Velo Pay - Cross-Border Wallet</Card.Title>
                             <Card.Description>Mobile Application & Gateway API</Card.Description>
                         </Card.Header>
-                        <Card.Content className="text-sm text-muted-foreground leading-relaxed">
-                            A high-security financial transaction gateway enabling instantaneous regional currency conversion and tokenized merchant payouts.
+                        <Card.Content>
+                            <Typography type="body-sm" color="muted" className="leading-relaxed">
+                                A high-security financial transaction gateway enabling instantaneous regional currency conversion and tokenized merchant payouts.
+                            </Typography>
                         </Card.Content>
                     </Card>
                 </div>
@@ -240,10 +204,12 @@ export default function Welcome() {
             <section className="py-16 md:py-24 rounded-2xl my-12 bg-linear-to-r from-indigo-500 via-purple-600 to-pink-500 text-white relative overflow-hidden shadow-xl">
                 <div className="absolute inset-0 bg-grid-white/10 pointer-events-none" />
                 <div className="relative z-10 max-w-3xl mx-auto text-center px-6 space-y-6">
-                    <h2 className="text-3xl sm:text-5xl font-black tracking-tight">Ready to Elevate Your Digital Operations?</h2>
-                    <p className="text-lg opacity-90 leading-relaxed max-w-xl mx-auto">
-                        Get in touch with our team today. Let’s collaborate to construct high-impact digital systems for your organization.
-                    </p>
+                    <Typography type="h2" weight="bold" align="center" className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+                        Ready to Elevate Your Digital Operations?
+                    </Typography>
+                    <Typography type="body" align="center" className="opacity-90 leading-relaxed max-w-xl mx-auto text-white">
+                        Get in touch with our team today. Let's collaborate to construct high-impact digital systems for your organization.
+                    </Typography>
                     <div className="pt-4">
                         <Link href="/contact">
                             <Button className="bg-white text-indigo-600 hover:bg-opacity-95 font-semibold px-8 py-6 text-base rounded-full shadow-lg">

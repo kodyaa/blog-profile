@@ -1,60 +1,30 @@
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
-import { Card, Button, Input, TextArea, Spinner } from '@heroui/react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Building2 } from 'lucide-react';
+import { Card, Button, Form, TextField, Label, Input, TextArea, FieldError, Spinner, Typography } from '@heroui/react';
+import { Send, CheckCircle2, Building2 } from 'lucide-react';
+import { contactDetails } from '@/data/contact';
+
 
 export default function Contact() {
-    const [formState, setFormState] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setSubmitting(true);
+
+        const formData = new FormData(e.currentTarget);
+        const data: Record<string, string> = {};
+        formData.forEach((value, key) => {
+            data[key] = value.toString();
+        });
+
         // Simulate API call
         setTimeout(() => {
             setSubmitting(false);
             setSubmitted(true);
-            setFormState({ name: '', email: '', subject: '', message: '' });
         }, 1500);
     };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormState(prev => ({ ...prev, [name]: value }));
-    };
-
-    const contactDetails = [
-        {
-            icon: MapPin,
-            title: 'Alamat Kantor',
-            content: 'Sudirman Central Business District (SCBD), Tower 3A, Lt. 12, Jakarta Selatan, Indonesia 12190',
-            color: 'text-indigo-500 bg-indigo-500/10'
-        },
-        {
-            icon: Phone,
-            title: 'Hubungi Kami',
-            content: '+62 (21) 555-8291 / +62 812-3456-7890',
-            color: 'text-purple-500 bg-purple-500/10'
-        },
-        {
-            icon: Mail,
-            title: 'Surel / Email Support',
-            content: 'inquiries@kodya.com / support@kodya.com',
-            color: 'text-pink-500 bg-pink-500/10'
-        },
-        {
-            icon: Clock,
-            title: 'Jam Operasional',
-            content: 'Senin - Jumat: 09.00 - 18.00 WIB (Sabtu - Minggu Libur)',
-            color: 'text-cyan-500 bg-cyan-500/10'
-        }
-    ];
 
     return (
         <>
@@ -62,19 +32,21 @@ export default function Contact() {
 
             {/* Header section */}
             <section className="py-12 md:py-16 border-b border-border/40 text-center max-w-3xl mx-auto space-y-4">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-500 uppercase tracking-widest">
-                    <Building2 className="h-3.5 w-3.5" />
-                    <span>Get In Touch</span>
+                <div className="inline-flex items-center gap-1.5">
+                    <Building2 className="h-3.5 w-3.5 text-indigo-500" />
+                    <Typography type="body-xs" weight="semibold" className="text-indigo-500 uppercase tracking-widest">
+                        Get In Touch
+                    </Typography>
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-black tracking-tight">
-                    Let’s Start a{' '}
+                <Typography type="h1" weight="bold" align="center" className="text-4xl sm:text-5xl font-black tracking-tight">
+                    Let's Start a{' '}
                     <span className="bg-linear-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
                         Conversation
                     </span>
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                </Typography>
+                <Typography type="body" color="muted" align="center" className="text-lg leading-relaxed">
                     Have questions about our custom systems or want to schedule a technical consultation? Fill out the form or reach out directly.
-                </p>
+                </Typography>
             </section>
 
             {/* Content Section */}
@@ -82,10 +54,10 @@ export default function Contact() {
                 {/* Contact Info (5 columns) */}
                 <div className="lg:col-span-5 space-y-8">
                     <div className="space-y-3">
-                        <h2 className="text-2xl font-bold tracking-tight">Informasi Kontak</h2>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                            Hubungi kami melalui channels berikut atau kunjungi kantor pusat kami di pusat kota Jakarta.
-                        </p>
+                        <Typography type="h2" weight="bold" className="tracking-tight">Informasi Kontak</Typography>
+                        <Typography type="body-sm" color="muted" className="leading-relaxed">
+                            Hubungi kami melalui channels berikut or kunjungi kantor pusat kami di pusat kota Jakarta.
+                        </Typography>
                     </div>
 
                     <div className="space-y-6">
@@ -97,8 +69,8 @@ export default function Contact() {
                                         <Icon className="h-5 w-5" />
                                     </div>
                                     <div className="space-y-1">
-                                        <h4 className="text-sm font-bold text-foreground">{detail.title}</h4>
-                                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{detail.content}</p>
+                                        <Typography type="body-sm" weight="bold">{detail.title}</Typography>
+                                        <Typography type="body-sm" color="muted" className="leading-relaxed">{detail.content}</Typography>
                                     </div>
                                 </div>
                             );
@@ -116,10 +88,10 @@ export default function Contact() {
                                         <CheckCircle2 className="h-10 w-10" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-bold">Pesan Anda Berhasil Dikirim!</h3>
-                                <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                                <Typography type="h3" weight="bold" align="center">Pesan Anda Berhasil Dikirim!</Typography>
+                                <Typography type="body-sm" color="muted" align="center" className="max-w-sm mx-auto">
                                     Terima kasih telah menghubungi kami. Tim kami akan segera membalas email Anda dalam waktu 1x24 jam.
-                                </p>
+                                </Typography>
                                 <div className="pt-2">
                                     <Button 
                                         variant="outline" 
@@ -131,66 +103,48 @@ export default function Contact() {
                                 </div>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <Form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="space-y-2">
-                                    <h3 className="text-xl font-bold">Kirim Formulir Inquiry</h3>
-                                    <p className="text-xs text-muted-foreground">Tulis kebutuhan proyek Anda dan mari jadwalkan meeting awal.</p>
+                                    <Typography type="h3" weight="bold">Kirim Formulir Inquiry</Typography>
+                                    <Typography type="body-xs" color="muted">Tulis kebutuhan proyek Anda dan mari jadwalkan meeting awal.</Typography>
                                 </div>
 
                                 <div className="grid sm:grid-cols-2 gap-4">
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="name" className="text-xs font-semibold text-foreground/80">Nama Lengkap</label>
-                                        <Input
-                                            id="name"
-                                            name="name"
-                                            value={formState.name}
-                                            onChange={handleChange}
-                                            required
-                                            placeholder="John Doe"
-                                            className="w-full"
-                                        />
-                                    </div>
-                                    <div className="space-y-1.5">
-                                        <label htmlFor="email" className="text-xs font-semibold text-foreground/80">Alamat Email</label>
-                                        <Input
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            value={formState.email}
-                                            onChange={handleChange}
-                                            required
-                                            placeholder="john@example.com"
-                                            className="w-full"
-                                        />
-                                    </div>
+                                    <TextField isRequired name="name" className="w-full">
+                                        <Label>Nama Lengkap</Label>
+                                        <Input placeholder="John Doe" />
+                                        <FieldError />
+                                    </TextField>
+
+                                    <TextField 
+                                        isRequired 
+                                        name="email" 
+                                        type="email" 
+                                        className="w-full"
+                                        validate={(value) => {
+                                            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                                                return "Alamat email tidak valid";
+                                            }
+                                            return null;
+                                        }}
+                                    >
+                                        <Label>Alamat Email</Label>
+                                        <Input placeholder="john@example.com" />
+                                        <FieldError />
+                                    </TextField>
                                 </div>
 
-                                <div className="space-y-1.5">
-                                    <label htmlFor="subject" className="text-xs font-semibold text-foreground/80">Subjek</label>
-                                    <Input
-                                        id="subject"
-                                        name="subject"
-                                        value={formState.subject}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Konsultasi Pengembangan Aplikasi ERP"
-                                        className="w-full"
-                                    />
-                                </div>
+                                <TextField isRequired name="subject" className="w-full">
+                                    <Label>Subjek</Label>
+                                    <Input placeholder="Konsultasi Pengembangan Aplikasi ERP" />
+                                    <FieldError />
+                                </TextField>
 
-                                <div className="space-y-1.5">
-                                    <label htmlFor="message" className="text-xs font-semibold text-foreground/80">Detail Pesan / Deskripsi Proyek</label>
-                                    <TextArea
-                                        id="message"
-                                        name="message"
-                                        rows={5}
-                                        value={formState.message}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Tulis detail kebutuhan, timeline perkiraan, atau pertanyaan lainnya..."
-                                        className="w-full"
-                                    />
-                                </div>
+                                <TextField isRequired name="message" className="w-full">
+                                    <Label>Detail Pesan / Deskripsi Proyek</Label>
+                                    <TextArea rows={5} placeholder="Tulis detail kebutuhan, timeline perkiraan, atau pertanyaan lainnya..." />
+                                    <FieldError />
+                                </TextField>
 
                                 <Button 
                                     type="submit" 
@@ -204,7 +158,7 @@ export default function Contact() {
                                         </>
                                     )}
                                 </Button>
-                            </form>
+                            </Form>
                         )}
                     </Card>
                 </div>
@@ -213,31 +167,22 @@ export default function Contact() {
             {/* Map Section */}
             <section className="py-16 space-y-6">
                 <div className="space-y-2">
-                    <h2 className="text-2xl font-bold tracking-tight">Lokasi Kantor Kami</h2>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <Typography type="h2" weight="bold" className="tracking-tight">Lokasi Kantor Kami</Typography>
+                    <Typography type="body-sm" color="muted" className="leading-relaxed">
                         Kunjungi kantor kami untuk meeting langsung (mohon konfirmasi jadwal sebelum kunjungan).
-                    </p>
+                    </Typography>
                 </div>
                 
                 {/* Styled Map Placeholder using HeroUI / premium CSS */}
                 <Card className="border border-border/40 bg-surface/30 overflow-hidden h-100 relative flex items-center justify-center group">
-                    <div className="absolute inset-0 bg-indigo-950/20 mix-blend-multiply pointer-events-none z-10" />
-                    {/* Visual mockup of Google Maps */}
-                    <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#374151_1px,transparent_1px)] bg-size-[16px_16px] opacity-80" />
-                    
-                    {/* Styled central beacon pointer */}
-                    <div className="relative z-20 flex flex-col items-center gap-3">
-                        <div className="relative flex items-center justify-center">
-                            <span className="animate-ping absolute inline-flex h-12 w-12 rounded-full bg-indigo-400 opacity-75"></span>
-                            <div className="relative w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white shadow-lg border border-white/20">
-                                <Building2 className="h-4 w-4" />
-                            </div>
-                        </div>
-                        <div className="bg-background/90 dark:bg-background/95 border border-border/40 backdrop-blur-md px-4 py-2 rounded-lg text-center max-w-xs shadow-md">
-                            <p className="text-xs font-bold">Portofolia Blog HQ</p>
-                            <p className="text-[10px] text-muted-foreground mt-0.5">Sudirman Central Business District (SCBD), Jakarta</p>
-                        </div>
-                    </div>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6664270098317!2d106.82496417578299!3d-6.175392360514101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2dbfb2115%3A0xa196f7136977f18b!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1716584285190!5m2!1sid!2sid"
+                        title="Google map"
+                        style={{ border: 0 }}
+                        className="w-full h-full"
+                        allowFullScreen
+                        loading="lazy"
+                    />
                 </Card>
             </section>
         </>

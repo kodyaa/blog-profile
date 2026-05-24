@@ -1,66 +1,16 @@
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
-import { Card, Button, Chip } from '@heroui/react';
-import { Layers, ExternalLink, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Card, Button, Chip, Typography } from '@heroui/react';
+import { Layers, ArrowUpRight, Sparkles } from 'lucide-react';
+import { categories, projects } from '@/data/portfolio';
+import type { ProjectCategory } from '@/data/portfolio';
+
 
 export default function Portfolio() {
-    const [filter, setFilter] = useState('All');
+    const [filter, setFilter] = useState<ProjectCategory>('All');
 
-    const categories = ['All', 'Web', 'Mobile', 'DevOps', 'Design'];
-
-    const projects = [
-        {
-            title: 'AeroCloud ERP Platform',
-            category: 'Web',
-            description: 'A complete inventory, supply chain, and operations hub engineered for aerospace manufacturers. Features optimistic UI and sub-second inventory sync.',
-            tech: ['Laravel', 'React', 'PostgreSQL', 'Redis'],
-            color: 'from-blue-600/30 to-indigo-800/30',
-            bgChar: 'AC'
-        },
-        {
-            title: 'Velo Pay Wallet',
-            category: 'Mobile',
-            description: 'Cross-border digital remittance and merchant wallet. Built offline-first, incorporating biometric security and instant currency conversion APIs.',
-            tech: ['React Native', 'TypeScript', 'GraphQL', 'Tailwind'],
-            color: 'from-purple-600/30 to-pink-800/30',
-            bgChar: 'VP'
-        },
-        {
-            title: 'FinEdge Analytics Dashboard',
-            category: 'Web',
-            description: 'High-volume transaction auditing platform for hedge funds. Features advanced SVG chart rendering, data virtualization, and custom export engines.',
-            tech: ['React', 'Inertia.js', 'MySQL', 'Highcharts'],
-            color: 'from-emerald-600/30 to-teal-800/30',
-            bgChar: 'FE'
-        },
-        {
-            title: 'Auto-Scaling Multi-Region Cloud',
-            category: 'DevOps',
-            description: 'Migration from physical infrastructure to AWS Multi-AZ containerized setup. Implemented zero-downtime deployment workflows and security auditing.',
-            tech: ['AWS', 'Docker', 'Terraform', 'GitHub Actions'],
-            color: 'from-cyan-600/30 to-blue-800/30',
-            bgChar: 'AS'
-        },
-        {
-            title: 'Starlight Branding & UX System',
-            category: 'Design',
-            description: 'Comprehensive brand relaunch and custom Tailwind CSS v4 design tokens for a global logistics conglomerate, increasing visual consistency by 80%.',
-            tech: ['Figma', 'UX Auditing', 'Design Tokens', 'Storybook'],
-            color: 'from-rose-600/30 to-orange-800/30',
-            bgChar: 'SL'
-        },
-        {
-            title: 'CareSync Medical Portal',
-            category: 'Web',
-            description: 'HIPAA-compliant doctor-patient scheduling and record system. Utilizes end-to-end payload encryption and custom PDF generators.',
-            tech: ['PHP 8.4', 'Laravel', 'Alpine.js', 'Tailwind'],
-            color: 'from-sky-600/30 to-indigo-800/30',
-            bgChar: 'CS'
-        }
-    ];
-
-    const filteredProjects = filter === 'All' 
-        ? projects 
+    const filteredProjects = filter === 'All'
+        ? projects
         : projects.filter(p => p.category === filter);
 
     return (
@@ -69,19 +19,21 @@ export default function Portfolio() {
 
             {/* Header section */}
             <section className="py-12 md:py-16 border-b border-border/40 text-center max-w-3xl mx-auto space-y-4">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-500 uppercase tracking-widest">
-                    <Layers className="h-3.5 w-3.5" />
-                    <span>Our Legacy</span>
+                <div className="inline-flex items-center gap-1.5">
+                    <Layers className="h-3.5 w-3.5 text-indigo-500" />
+                    <Typography type="body-xs" weight="semibold" className="text-indigo-500 uppercase tracking-widest">
+                        Our Legacy
+                    </Typography>
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-black tracking-tight">
-                    Case Studies &{' '}
+                <Typography type="h1" weight="bold" align="center" className="text-4xl sm:text-5xl font-black tracking-tight">
+                    Case Studies &amp;{' '}
                     <span className="bg-linear-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
                         Digital Triumphs
                     </span>
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                </Typography>
+                <Typography type="body" color="muted" align="center" className="text-lg leading-relaxed">
                     Explore the systems we have deployed. Each card represents a custom solution engineered to improve speed, design appeal, and operational productivity.
-                </p>
+                </Typography>
             </section>
 
             {/* Filters Section */}
@@ -114,7 +66,7 @@ export default function Portfolio() {
                             <div className="space-y-6">
                                 {/* Simulated image with CSS gradient and large letter backdrop */}
                                 <div className={`h-48 bg-linear-to-br ${proj.color} relative overflow-hidden flex items-center justify-center`}>
-                                    <span className="text-6xl font-black text-white/10 uppercase tracking-widest select-none select-all-none">
+                                    <span className="text-6xl font-black text-white/10 uppercase tracking-widest select-none">
                                         {proj.bgChar}
                                     </span>
                                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
@@ -124,11 +76,17 @@ export default function Portfolio() {
                                 </div>
 
                                 <div className="px-6 space-y-3">
-                                    <h3 className="text-xl font-bold group-hover:text-primary transition-colors flex items-center gap-1.5 justify-between">
+                                    <Typography
+                                        type="h4"
+                                        weight="bold"
+                                        className="group-hover:text-primary transition-colors flex items-center gap-1.5 justify-between"
+                                    >
                                         {proj.title}
                                         <ArrowUpRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all text-primary shrink-0" />
-                                    </h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">{proj.description}</p>
+                                    </Typography>
+                                    <Typography type="body-sm" color="muted" className="leading-relaxed">
+                                        {proj.description}
+                                    </Typography>
                                 </div>
                             </div>
 
@@ -147,7 +105,7 @@ export default function Portfolio() {
 
                 {filteredProjects.length === 0 && (
                     <div className="text-center py-16 space-y-3">
-                        <p className="text-lg text-muted-foreground">No projects found in this category.</p>
+                        <Typography type="body" color="muted">No projects found in this category.</Typography>
                         <Button variant="outline" onPress={() => setFilter('All')} className="rounded-full">
                             Reset Filters
                         </Button>
@@ -157,14 +115,18 @@ export default function Portfolio() {
 
             {/* Bottom Section */}
             <section className="py-12 border-t border-border/40 text-center space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1 text-xs font-semibold text-indigo-500">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    <span>Have a customized roadmap?</span>
+                <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1">
+                    <Sparkles className="h-3.5 w-3.5 text-indigo-500" />
+                    <Typography type="body-xs" weight="semibold" className="text-indigo-500">
+                        Have a customized roadmap?
+                    </Typography>
                 </div>
-                <h3 className="text-2xl font-bold">Let’s Add Your Project to This Gallery</h3>
-                <p className="text-muted-foreground max-w-md mx-auto">
+                <Typography type="h3" weight="bold" align="center">
+                    Let's Add Your Project to This Gallery
+                </Typography>
+                <Typography type="body" color="muted" align="center" className="max-w-md mx-auto">
                     We deliver customized development cycles with dedicated support from startup blueprints to enterprise scaling.
-                </p>
+                </Typography>
             </section>
         </>
     );

@@ -1,55 +1,10 @@
 import { Head, Link } from '@inertiajs/react';
-import { Card, Button, Avatar } from '@heroui/react';
-import { Target, Compass, Sparkles, Shield, Heart, Award, ArrowRight } from 'lucide-react';
+import { Card, Button, Avatar, Typography } from '@heroui/react';
+import { Target, Compass, Sparkles, ArrowRight } from 'lucide-react';
+import { values, team } from '@/data/about';
+
 
 export default function About() {
-    const values = [
-        {
-            title: 'Excellence',
-            description: 'We strive for exceptional quality in every line of code and user experience we construct.',
-            icon: Award,
-            color: 'text-indigo-500 bg-indigo-500/10'
-        },
-        {
-            title: 'Integrity',
-            description: 'Honesty, transparency, and architectural standards are at the foundation of all our systems.',
-            icon: Shield,
-            color: 'text-purple-500 bg-purple-500/10'
-        },
-        {
-            title: 'Customer-Centric',
-            description: 'We build digital products that directly align with client success and end-user accessibility.',
-            icon: Heart,
-            color: 'text-pink-500 bg-pink-500/10'
-        }
-    ];
-
-    const team = [
-        {
-            name: 'Ahmad Faisal',
-            role: 'CEO & Founder',
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80',
-            bio: 'Over 15 years of technology experience leading enterprise digital transformations across SE Asia.'
-        },
-        {
-            name: 'Sarah Lestari',
-            role: 'Chief Technology Officer',
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
-            bio: 'Expert in cloud architectures, distributed system design, and high-volume transaction databases.'
-        },
-        {
-            name: 'Reza Mahendra',
-            role: 'VP of Product Design',
-            image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80',
-            bio: 'Passionate about responsive component libraries, accessible design tokens, and digital ergonomics.'
-        },
-        {
-            name: 'Nadia Putri',
-            role: 'Head of Customer Success',
-            image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80',
-            bio: 'Ensures that Portofolia Blog by Kodya clients have top-tier onboarding, execution clarity, and sustained product growth.'
-        }
-    ];
 
     return (
         <>
@@ -57,19 +12,21 @@ export default function About() {
 
             {/* Header section */}
             <section className="py-12 md:py-16 border-b border-border/40 text-center max-w-3xl mx-auto space-y-4">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-500 uppercase tracking-widest">
-                    <Compass className="h-3.5 w-3.5" />
-                    <span>Who We Are</span>
+                <div className="inline-flex items-center gap-1.5">
+                    <Compass className="h-3.5 w-3.5 text-indigo-500" />
+                    <Typography type="body-xs" weight="semibold" className="text-indigo-500 uppercase tracking-widest">
+                        Who We Are
+                    </Typography>
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-black tracking-tight">
+                <Typography type="h1" weight="bold" align="center" className="text-4xl sm:text-5xl font-black tracking-tight">
                     Shaping the Future of{' '}
                     <span className="bg-linear-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
                         Digital Engineering
                     </span>
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                </Typography>
+                <Typography type="body" color="muted" align="center" className="text-lg leading-relaxed">
                     Portofolia Blog by Kodya was founded on the principle that digital tools should empower businesses to do more. We engineer software platforms that bring operational clarity and design excellence to companies worldwide.
-                </p>
+                </Typography>
             </section>
 
             {/* Vision & Mission Section */}
@@ -79,10 +36,10 @@ export default function About() {
                         <Target className="h-6 w-6" />
                     </div>
                     <div className="space-y-3">
-                        <h2 className="text-2xl font-bold tracking-tight">Visi Kami</h2>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <Typography type="h2" weight="bold" className="tracking-tight">Visi Kami</Typography>
+                        <Typography type="body" color="muted" className="leading-relaxed">
                             Menjadi mitra teknologi global utama yang mentransformasi operasi bisnis melalui inovasi perangkat lunak yang berkesinambungan, andal, dan mengedepankan kualitas desain.
-                        </p>
+                        </Typography>
                     </div>
                 </Card>
 
@@ -91,12 +48,20 @@ export default function About() {
                         <Sparkles className="h-6 w-6" />
                     </div>
                     <div className="space-y-3">
-                        <h2 className="text-2xl font-bold tracking-tight">Misi Kami</h2>
-                        <ul className="space-y-2 text-muted-foreground text-sm leading-relaxed list-disc list-inside">
-                            <li>Mengembangkan solusi perangkat lunak berkinerja tinggi yang disesuaikan dengan kebutuhan strategis bisnis.</li>
-                            <li>Mengintegrasikan sistem desain yang ramah pengguna, berstandar tinggi, dan mudah diakses.</li>
-                            <li>Menyediakan arsitektur komputasi awan yang aman, hemat biaya, dan siap berkembang di masa depan.</li>
-                            <li>Membina talenta rekayasa digital berstandar internasional melalui kolaborasi proyek yang berintegritas.</li>
+                        <Typography type="h2" weight="bold" className="tracking-tight">Misi Kami</Typography>
+                        <ul className="space-y-2 list-disc list-inside">
+                            {[
+                                'Mengembangkan solusi perangkat lunak berkinerja tinggi yang disesuaikan dengan kebutuhan strategis bisnis.',
+                                'Mengintegrasikan sistem desain yang ramah pengguna, berstandar tinggi, dan mudah diakses.',
+                                'Menyediakan arsitektur komputasi awan yang aman, hemat biaya, dan siap berkembang di masa depan.',
+                                'Membina talenta rekayasa digital berstandar internasional melalui kolaborasi proyek yang berintegritas.'
+                            ].map((item, i) => (
+                                <li key={i}>
+                                    <Typography type="body-sm" color="muted" className="leading-relaxed inline">
+                                        {item}
+                                    </Typography>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </Card>
@@ -105,10 +70,12 @@ export default function About() {
             {/* Core Values Section */}
             <section className="py-16 border-b border-border/40 space-y-12">
                 <div className="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 className="text-3xl font-bold tracking-tight">Nilai-Nilai Utama Kami</h2>
-                    <p className="text-muted-foreground">
+                    <Typography type="h2" weight="bold" align="center" className="tracking-tight">
+                        Nilai-Nilai Utama Kami
+                    </Typography>
+                    <Typography type="body" color="muted" align="center">
                         Budaya kerja kami dibentuk oleh komitmen bersama terhadap standar kualitas tertinggi.
-                    </p>
+                    </Typography>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
@@ -120,8 +87,10 @@ export default function About() {
                                     <Icon className="h-5 w-5" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-lg font-bold">{val.title}</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed">{val.description}</p>
+                                    <Typography type="h4" weight="bold">{val.title}</Typography>
+                                    <Typography type="body-sm" color="muted" className="leading-relaxed">
+                                        {val.description}
+                                    </Typography>
                                 </div>
                             </Card>
                         );
@@ -132,10 +101,12 @@ export default function About() {
             {/* Team Section */}
             <section className="py-16 space-y-12">
                 <div className="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 className="text-3xl font-bold tracking-tight">Kenali Tim Kami</h2>
-                    <p className="text-muted-foreground">
+                    <Typography type="h2" weight="bold" align="center" className="tracking-tight">
+                        Kenali Tim Kami
+                    </Typography>
+                    <Typography type="body" color="muted" align="center">
                         Para profesional berpengalaman yang mendedikasikan keahlian mereka untuk menyukseskan proyek digital Anda.
-                    </p>
+                    </Typography>
                 </div>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -150,10 +121,14 @@ export default function About() {
                             </div>
                             <Card.Header className="pt-5 pb-2">
                                 <Card.Title className="text-lg font-bold">{member.name}</Card.Title>
-                                <Card.Description className="text-xs text-primary font-semibold uppercase tracking-wider">{member.role}</Card.Description>
+                                <Card.Description className="text-xs text-primary font-semibold uppercase tracking-wider">
+                                    {member.role}
+                                </Card.Description>
                             </Card.Header>
-                            <Card.Content className="text-xs text-muted-foreground leading-relaxed pt-0 pb-6 flex-1">
-                                {member.bio}
+                            <Card.Content className="pt-0 pb-6 flex-1">
+                                <Typography type="body-xs" color="muted" className="leading-relaxed">
+                                    {member.bio}
+                                </Typography>
                             </Card.Content>
                         </Card>
                     ))}
@@ -162,10 +137,12 @@ export default function About() {
 
             {/* Contact CTA */}
             <section className="py-12 border-t border-border/40 text-center space-y-6">
-                <h3 className="text-2xl font-bold">Tertarik Bermitra Dengan Tim Kami?</h3>
-                <p className="text-muted-foreground max-w-md mx-auto">
+                <Typography type="h3" weight="bold" align="center">
+                    Tertarik Bermitra Dengan Tim Kami?
+                </Typography>
+                <Typography type="body" color="muted" align="center" className="max-w-md mx-auto">
                     Diskusikan ide proyek digital Anda dengan konsultan kami dan mari buat sesuatu yang luar biasa.
-                </p>
+                </Typography>
                 <div>
                     <Link href="/contact">
                         <Button className="bg-linear-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-full px-6">
