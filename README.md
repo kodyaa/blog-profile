@@ -1,6 +1,6 @@
 # Portofolia Blog by Kodya - Website Profil Perusahaan
 
-![Portofolia Blog by Kodya Banner](C:/Users/Advan/.gemini/antigravity-ide/brain/8e84f161-384f-4c75-b652-03d03d65d81e/company_cover_stack_1779652635925.png)
+![Portofolia Blog by Kodya Banner](public/img/company_cover_stack.png)
 
 Sebuah website profil perusahaan yang premium, modern, dan sangat responsif, dibangun dengan menggunakan **Laravel 13**, **React 19**, **Inertia.js v3**, **HeroUI v3** (sebelumnya NextUI), dan **Tailwind CSS v4**.
 
